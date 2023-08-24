@@ -10,6 +10,8 @@ interface CompanyService {
 
     fun removeCompany(id: Int)
 
+    fun findCompany(id: Int): CompanyDto?
+
     fun modify(id: Int, modifiedDto: ModifiedCompanyDtoRequest)
 
     fun companies() : List<CompanyDto>

@@ -1,5 +1,4 @@
 package dmitry.companies.dto
 
-class ModifiedCompanyDtoRequest {
-
-}
+//TODO
+class ModifiedCompanyDtoRequest

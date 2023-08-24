@@ -1,5 +1,10 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+
+group = "dmitry"
+version = "0.0.1-SNAPSHOT"
+
+
 plugins {
 	id("org.springframework.boot") version "3.1.1"
 	id("io.spring.dependency-management") version "1.1.0"
@@ -8,8 +13,11 @@ plugins {
 	kotlin("plugin.jpa") version "1.8.22"
 }
 
-group = "dmitry"
-version = "0.0.1-SNAPSHOT"
+allOpen {
+	annotation("javax.persistence.Entity")
+	annotation("javax.persistence.MappedSuperclass")
+	annotation("javax.persistence.Embeddable")
+}
 
 java {
 	sourceCompatibility = JavaVersion.VERSION_17
@@ -28,14 +36,16 @@ repositories {
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-web")
+	//implementation("org.springframework.boot:spring-boot-starter-security")
+
+	testImplementation("org.springframework.boot:spring-boot-starter-test")
+
+	annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
+	developmentOnly("org.springframework.boot:spring-boot-devtools")
+
+	runtimeOnly("org.postgresql:postgresql")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
-	compileOnly("org.projectlombok:lombok")
-	developmentOnly("org.springframework.boot:spring-boot-devtools")
-	runtimeOnly("org.postgresql:postgresql")
-	annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
-	annotationProcessor("org.projectlombok:lombok")
-	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
 tasks.withType<KotlinCompile> {
